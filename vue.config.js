@@ -3,6 +3,13 @@ function resolve(dir) {
   return path.join(__dirname, dir);
 }
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
+let plugins = [];
+let optimization = {};
+// comment line 6 to disable analyzer
+plugins.push(new BundleAnalyzerPlugin());
+
 module.exports = {
   devServer: {
     disableHostCheck: true,
@@ -43,5 +50,9 @@ module.exports = {
         symbolId: "icon-[name]",
       })
       .end();
+  },
+  configureWebpack: {
+    plugins,
+    optimization,
   },
 };
