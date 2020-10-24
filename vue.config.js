@@ -3,14 +3,10 @@ function resolve(dir) {
   return path.join(__dirname, dir);
 }
 
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-
 let plugins = [];
 let optimization = {};
-// comment line 6 to disable analyzer
-plugins.push(new BundleAnalyzerPlugin());
 
-module.exports = {
+const vueConfig = {
   devServer: {
     disableHostCheck: true,
     port: process.env.DEV_SERVER_PORT || 8080
@@ -56,4 +52,11 @@ module.exports = {
     plugins,
     optimization,
   },
-};
+}
+
+if (process.env.ANALYSIS === "true") {
+  const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+  vueConfig.configureWebpack.plugins.push(new BundleAnalyzerPlugin());
+}
+
+module.exports = vueConfig

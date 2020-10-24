@@ -6,7 +6,8 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "prettier": "npx prettier --write ./src"
+    "prettier": "npx prettier --write ./src",
+    "analysis": "vue-cli-service build --mode analysis"
   },
   "husky": {
     "hooks": {
